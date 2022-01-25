@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+def estetica(request):
+    return render(request, "AppCoder/inicio.html")
+
 def sucursal(request):
     return render(request, "AppCoder/sucursal.html")
 

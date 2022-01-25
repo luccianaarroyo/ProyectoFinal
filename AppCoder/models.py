@@ -1,6 +1,9 @@
 from django.db.models import Model
 from django.db.models.fields import CharField, IntegerField, EmailField
 
+class Estetica(Model):
+    menu = CharField(max_length=40)
+    
 class Sucursal(Model):
     zona = CharField(max_length=40)
     
