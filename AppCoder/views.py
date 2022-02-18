@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from AppCoder.forms import ConsultaForm
 from AppCoder.models import consulta
 
+
 def inicio(request):
     return render(request, "AppCoder/inicio.html")
 
@@ -13,16 +14,16 @@ def profesionales(request):
     return render(request, "AppCoder/profesional.html")
 
 def consulta(request):
-    return render(request, "AppCoder/consulta.html")
+    return render(request, "AppCoder/consulta.html", 
+    {'consulta': consulta.objects.all()})
 
 def consulta_formulario (request): #se usan las mismas variables que en el forms 
     if request.method == 'POST':
-        formulario = ConsultaForm(request.POST)
-       
-        if formulario.is_valid():
-            data = formulario.cleaned_data
-            consulta.objects.create(nombre=data['nombre'], servicio=data['servicio'], mail=data['mail'], telefono=data['telefono']) #curso = curso de forms.py
-            return redirect('Consulta')
-    else:
-        formulario = ConsultaForm()
-    return render(request, 'AppCoder/ConsultaFormulario.html', {'formulario': formulario})
+        nombre = request.POST['nombre']
+        servicio = request.POST['servicio']
+        mail = request.POST['mail']
+        telefono = request.POST['telefono']
+        consulta.objects.create(nombre=data['nombre'], servicio=data['servicio'], mail=data['mail'], telefono=data['telefono'])
+        return render(request, 'AppCoder/consulta.html')
+    
+    return render(request, "AppCoder/consultaFormulario.html")

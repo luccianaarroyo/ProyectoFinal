@@ -9,18 +9,13 @@
 
 <body>
 
-    {% if formulario.errors %}
-        <p style="color: red;"> {{ formulario.errors }} </p>
-    {% endif %}
-
-
-
     <form action = "" method="POST">
-        {% csrf_token %}
-       
-        <table>
-            {{formulario.as_table}}
-        </table>
+        {% csrf_token %} 
+        
+        <p>nombre: <input type ="text" name="nombre"> </p>
+        <p>servicio: <input type ="text" name="servicio"> </p>
+        <p>mail: <input type ="text" name="mail"> </p>
+        <p>telefono: <input type ="number" name="telefono"> </p>
 
         <input type = "submit" value = "Enviar">
     </form>

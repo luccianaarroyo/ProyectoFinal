@@ -23,7 +23,7 @@
         <!-- SimpleLightbox plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'AppCoder/css/styles.css' %}" rel="sptylesheet" />
+        <link href="{% static 'AppCoder/css/styles.css' %}" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -33,10 +33,10 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'servicio' %}">Servicios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'profesional' %}">Profesionales</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'consulta' %}">Consulta</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Inicio' %}">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Servicios' %}">Servicios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Profesionales' %}">Profesionales</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Consultas' %}">Consulta</a></li>
                     </ul>
                 </div>
             </div>
@@ -46,7 +46,7 @@
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Estetica Rose/h1>
+                        <h1 class="text-white font-weight-bold">Estetica Rose</h1>
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
@@ -57,7 +57,7 @@
             </div>
         </header>
 
-        {% block contenidoQueCambia %}
+        {% block contenidoQueCambia %}p
 
         {% endblock %}
         <!-- About-->
