@@ -1,0 +1,18 @@
+{% extends 'AppCoder/padre.html' %}
+
+
+
+{% block contenidoQueCambia %}
+    <h3> Los servicios son: </h3>
+
+    {% for consulta in consultas %} 
+        {{consulta}}
+        <br>
+    {% endfor %} 
+
+{% endblock %}
+
+
+{% block titulo %}
+    Servicios
+{% endblock %}
