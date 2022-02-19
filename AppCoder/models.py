@@ -19,10 +19,10 @@ class profesionales(Model):
     Juan = CharField(max_length=40)
     Maria = CharField(max_length=40)
     
-class consulta(Model):
+class Consulta(Model):
     nombre = CharField(max_length=40)
     servicio = CharField(max_length=40)
     mail = EmailField()
-    telefono = IntegerField()
+    # telefono = IntegerField() - modificado por sugerenccia de WP
     def _str_ (self): #formulario
-        return f'consulta {self.nombre} ({self.servicio}){self.mail} ({self.telefono})'
+        return f'consulta {self.nombre} ({self.servicio}){self.mail}' #({self.telefono})- modificado por sugerenccia de WP
