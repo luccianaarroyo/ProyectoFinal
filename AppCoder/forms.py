@@ -4,4 +4,4 @@ class ConsultaForm(forms.Form):
     nombre = forms.CharField()
     servicio = forms.CharField()
     mail = forms.EmailField() 
-    # telefono = forms.IntegerField() - modificado por sugerenccia de WP
+    

@@ -2,6 +2,7 @@ from django.db.models import Model
 from django.db.models.fields import CharField, EmailField
 from django.forms import IntegerField
 
+
 class inicio(Model):
     menu = CharField(max_length=40)
     
@@ -24,5 +25,7 @@ class Consulta(Model):
     servicio = CharField(max_length=40)
     mail = EmailField()
     # telefono = IntegerField() - modificado por sugerenccia de WP
-    def _str_ (self): #formulario
-        return f'consulta {self.nombre} ({self.servicio}){self.mail}' #({self.telefono})- modificado por sugerenccia de WP
+    def __str__ (self) -> str: #formulario
+        return f'Consulta ({self.nombre})({self.servicio})({self.mail})'
+    
+    

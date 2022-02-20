@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from AppCoder.forms import ConsultaForm
 from AppCoder.models import Consulta
 from django.template import loader
+# from AppCoder.models import consulta as Consulta
 
 def inicio(request):
     return render(request, "AppCoder/inicio.html")
@@ -24,7 +25,7 @@ def consulta_formulario (request): #se usan las mismas variables que en el forms
         # nombre = request.POST['nombre']
         # servicio = request.POST['servicio']
         # mail = request.POST['mail']
-        # telefono = request.POST['telefono'] - modificado por sugerenccia de WP
+        
         if formulario.is_valid():
             data = formulario.cleaned_data
         Consulta.objects.create(nombre =data['nombre'], servicio=data['servicio'], mail=data['mail']) # a los 39.17 de la clase 21 cambia (nombre=nombre, servicio=servicio, mail=mail) 
