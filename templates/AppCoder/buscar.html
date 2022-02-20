@@ -8,15 +8,17 @@
 </head>
 <body>
     
-    <form action="{% url 'buscar' %}" method="GET">
+    {% if servicio %}
 
-        <input type ="text" name="nombre">
+    <ul>
+        {% for servicio in servicios %} 
+        <li>{{servicios}</li>
+        <br>
+    {% endfor %} 
+    </ul>
 
-        <input type = "submit" value = "Buscar">
+    {% endif %}
 
 
-
-    </form>
-    
 </body>
 </html>

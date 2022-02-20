@@ -41,4 +41,13 @@ def busqueda_consulta(request):
 
 #clase 21 a los 1.25 crea esta funcion
 def buscar(request):
-    return HttpResponse(f'Estoy buscando la consulta de: {request.GET["nombre"]}') #el nombre lo saca del template busquedaConsulta en el body esta declarada la variable de busqueda
+    #modifica la funcion a los 1.36 clase 21
+    nombre = request.GET["nombre"]
+    servicio= Consulta.objects.filter(nombre=nombre)
+    
+    return render(request, "AppCoder/buscar.html",
+    {'servicio' : servicio, 'nombre' : nombre})
+    
+    
+    
+    # return HttpResponse(f'Estoy buscando la consulta de: {request.GET["nombre"]}') #el nombre lo saca del template busquedaConsulta en el body esta declarada la variable de busqueda
