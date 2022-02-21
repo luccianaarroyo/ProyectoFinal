@@ -1,7 +1,7 @@
 
 from AppCoder.views import inicio, servicios, servicios_formulario, profesionales, profesionales_formulario,  consulta,consulta_formulario, nosotros, busqueda_consulta,buscar
 from django.urls import path
-
+from django.contrib.auth.decorators import login_required
 #servicios_delete,
 #profesionales_delete,
 #consulta_delete,

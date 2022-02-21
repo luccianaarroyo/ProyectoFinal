@@ -3,10 +3,11 @@ from django.contrib.auth import login, authenticate
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from TrabajoFinal.forms import UserRegisterForm, UserEditForm
+from TrabajoFinal.forms import UserRegisterForm #UserEditForm
 from django.views.generic import CreateView
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+
 
 
 def login_request(request):
@@ -50,22 +51,23 @@ class UserCreateView(CreateView):
     model= User
     success_url = reverse_lazy('login')
     template_name = 'registro.html'
+    # fields = ['username', 'email', 'password1', 'password2' ]
     form_class = UserRegisterForm
- 
-@login_required  
-def editar_perfil(request):
-    usuario = request.user
+ #------------ 1 SI HABILITO ESTO ROMPE TODOO!!!! -------------
+# @login_required  
+# def editar_perfil(request):
+#     usuario = request.user
     
-    if request.method == 'POST':
-        formulario = UserEditForm(request.POST)
-        if formulario.is_valid():
-            data = formulario.cleaned_data
-            usuario.email = data['email']
-            usuario.password = data['password1']
-            
-            usuario.save()
-            return redirect('inicio/')
-    else:
-        formulario = UserEditForm({'emial' : usuario.email})
+#     if request.method == 'POST':
+#       formulario = UserEditForm(request.POST)
+#       if formulario.is_valid():
+#          data = formulario.cleaned_data
+#          usuario.email = data['email']
+#          usuario.password = data['password1']
+#          usuario.save()
+#          return redirect('inicio/')
+    
+#     else:
+#         formulario = UserEditForm({'email' : usuario.email})
         
-    return render(request, 'registro.html', {'form' : formulario})
+#     return render(request, 'registro.html', {'form' : formulario})

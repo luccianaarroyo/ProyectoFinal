@@ -9,6 +9,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 #from django.urls import reverse_lazy1   #no lo importa
 
 from AppCoder.models import Servicios, Profesionales, Consulta
+from django.contrib.auth.decorators import login_required
 
 
 def inicio(request):
@@ -82,7 +83,7 @@ def profesionales_formulario (request): #se usan las mismas variables que en el 
 ##### CONSULTA ########
 
 
-
+@login_required
 def consulta(request):
  return render(request, "AppCoder/consulta.html", {'consulta': Consulta.objects.all()})
     
