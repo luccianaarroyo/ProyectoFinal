@@ -128,3 +128,4 @@ LOGIN_URL = 'login'
 MEDIA_URL = 'media/'
 import os
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = "/static/"

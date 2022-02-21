@@ -19,7 +19,9 @@ from TrabajoFinal.views import login_request, register, UserCreateView #editar_p
 from django.contrib.auth.views import LogoutView, LoginView
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from django.conf.urls.static import static
+from django.conf.urls.static import static 
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

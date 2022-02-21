@@ -62,7 +62,9 @@ class UserCreateView(CreateView):
 #       if formulario.is_valid():
 #          data = formulario.cleaned_data
 #          usuario.email = data['email']
-#          usuario.password = data['password1']
+#          usuario.set_password = (data['password1'])
+#          usuario.fist_name = data ['first_name']
+#          usuario.last_name = data ['last_name']
 #          usuario.save()
 #          return redirect('inicio/')
     

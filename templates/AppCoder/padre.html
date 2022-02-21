@@ -42,6 +42,7 @@
                           <a class="btn btn-primary" href="{% url 'login'%}">Iniciar</a>
                         {% else %}
                             <p class="text-white small mb-4 mb-lg-0"> Hola {{user.username}}!</p>
+                            <img src="{{avatar_url}}" height="40px"/>
                             <a class="btn btn-primary" href="{% url 'logout'%}">Logout</a>
                         {% endif %}
                     </ul>

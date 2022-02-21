@@ -13,7 +13,13 @@ from django.contrib.auth.decorators import login_required
 
 
 def inicio(request):
-    return render(request, "AppCoder/inicio.html")
+    #---- AVATAR ROMPE NO RECONOSE OBJETS ---- 
+    # avatar_url = Avatar.objects.filter(user= request.user)
+    # if avatares:
+    #     avatar_url = avatares.last().imagen.url
+    # else:
+    #     avatar_url = ''
+    return render(request, "AppCoder/inicio.html") #, {'avatar_url' : avatar_url}
 
 ############ SERVICIOS ###########
 
