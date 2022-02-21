@@ -51,7 +51,6 @@ class UserCreateView(CreateView):
     model= User
     success_url = reverse_lazy('login')
     template_name = 'registro.html'
-    # fields = ['username', 'email', 'password1', 'password2' ]
     form_class = UserRegisterForm
  #------------ 1 SI HABILITO ESTO ROMPE TODOO!!!! -------------
 # @login_required  
