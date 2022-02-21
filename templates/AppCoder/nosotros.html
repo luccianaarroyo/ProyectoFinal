@@ -11,6 +11,8 @@
         <title>
      {% block titulo %}
 
+     NOSOTROS
+
      {% endblock %}
         </title>
         <!-- Favicon-->
@@ -38,7 +40,7 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'Servicios' %}">Servicios</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Profesionales' %}">Profesionales</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Consultas' %}">Consulta</a></li>
-                        <a class="btn btn-primary" href="{% url 'login'%}">Iniciar</a>
+                        <a class="btn btn-primary" href="#nada">Iniciar</a>
                         <a class="btn btn-primary" href="{% url 'logout'%}">Logout</a>
                     </ul>
                 </div>
@@ -49,18 +51,35 @@
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Estetica Rose</h1>
+                        <h1 class="text-white font-weight-bold">Sobre Nosotros</h1>
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">Veni a pasar una tarde sola o con amigos</p>
+                        <p class="text-white-75 mb-5">Esta es nuestra biografia</p>
                         
                     </div>
                 </div>
             </div>
         </header>
 
-        {% block contenidoQueCambia %}p
+        {% block contenidoQueCambia %}
+        
+        Somos Luciana y Eliana
+        
+        <br>
+        Luciana actualmente es ...
+        Eliana trabaja en como administrativa en una agencia de turismo
+        <br>
+        Estamos dando nuestros primeros pasas dentro del mundo IT.
+        <br>
+        Hoy decidimos aventurarnos y creamos esta pagina como primer proyecto. 
+        <br>
+        Nuestra idea es que esta pagina le permita s los usurios realizar consultas sobre disponibilida de turno
+        <br>
+        Esperamos que sea de utilidad y sirva para la administracion de la estetica
+
+
+
 
         {% endblock %}
         <!-- About-->

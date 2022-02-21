@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+{% extends 'AppCoder/padre.html' %}
+
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,4 +11,31 @@
 <body style="background-color: plum;">
     servicios
 </body>
-</html>
+</html> {% endcomment %}
+
+
+
+
+
+
+{% block contenidoQueCambia %}
+    <h3> ¡Gracias por enviar tu consulta sobre nuestros servicios!
+        <br>
+        Otras consultas realizadas: 
+        <br>
+    </h3>
+
+    {% for servicio in servicio %} 
+        {{servicio}}
+        
+        <br>
+    {% endfor %} 
+
+
+        <a class="btn -primary" href="{% url 'servicios_formulario'%}">Agregar<a/>
+{% endblock %}
+
+
+{% block titulo %}
+    Servicios
+{% endblock %}

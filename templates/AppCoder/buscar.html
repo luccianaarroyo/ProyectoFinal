@@ -1,24 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    {% if servicio %}
-
-    <ul>
-        {% for servicio in servicios %} 
-        <li>{{servicios}</li>
-        <br>
-    {% endfor %} 
-    </ul>
-
-    {% endif %}
+{% extends 'AppCoder/padre.html' %}
 
 
-</body>
-</html>
+    {% block contenidoQueCambia %}
+
+
+    Estoy buscando la consulta de: {{nombre}}
+
+        {% if servicios %}
+
+        <ul>
+            {% for servicio in servicios %}
+                <li>{{servicio}}</li>
+             {% endfor %}
+
+        </ul>
+
+        {% endif %}
+
+
+    {% endblock %}
+
+
+    {% block titulo %}
+ Busqueda
+ {% endblock %}

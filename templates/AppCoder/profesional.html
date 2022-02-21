@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+{% extends 'AppCoder/padre.html' %}
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,4 +10,30 @@
 <body style="background-color: plum;">
   profesionales  
 </body>
-</html>
+</html> {% endcomment %}
+
+
+
+
+
+
+{% block contenidoQueCambia %}
+    <h3> ¡Gracias por enviar tu consulta sobre nuestro staff!
+        <br>
+        Otras consultas realizadas: 
+        <br>
+    </h3>
+
+    {% for profesional in object_list %} 
+        {{profesional}}
+        
+        <br>
+    {% endfor %} 
+
+        <a class="btn -primary" href="{% url 'profesionales_formulario'%}">Agregar<a/>
+{% endblock %}
+
+
+{% block titulo %}
+    Profesionales
+{% endblock %}

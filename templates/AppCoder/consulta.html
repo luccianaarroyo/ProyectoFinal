@@ -11,9 +11,11 @@
 
     {% for consulta in consulta %} 
         {{consulta}}
+        
         <br>
     {% endfor %} 
 
+          <a class="btn -primary" href="{% url 'consulta_formulario' %}">Agregar<a/>
 {% endblock %}
 
 
