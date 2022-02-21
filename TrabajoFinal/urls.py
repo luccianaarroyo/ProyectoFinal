@@ -18,8 +18,8 @@ from django.urls import path, include
 from TrabajoFinal.views import login_request, register, UserCreateView #editar_perfil <------------ 1 SI HABILITO ESTO ROMPE TODOO!!!! -------------
 from django.contrib.auth.views import LogoutView, LoginView
 from django.contrib.auth.decorators import login_required
-
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,3 +30,6 @@ urlpatterns = [
     #path("user/edit", editar_perfil, name='user_editar'), #------------ 1 SI HABILITO ESTO ROMPE TODOO!!!! -------------
     
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

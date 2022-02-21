@@ -1,7 +1,7 @@
-from django.db.models import Model
+from django.db.models import Model, ForeignKey, CASCADE, ImageField
 from django.db.models.fields import CharField, EmailField
 from django.forms import IntegerField
-
+from django.contrib.auth.models import User
 
 class inicio(Model):
     menu = CharField(max_length=40)
@@ -32,6 +32,8 @@ class Consulta(Model):
     def __str__ (self) -> str: #formulario
         return f'Consulta ({self.nombre})({self.servicio})({self.mail})'
     
-
+class Avatar(Model):
+    user = ForeignKey(User, on_delete=CASCADE)
+    imagen = ImageField(upload_to='avatares', null=True, blank=True)
 
     
