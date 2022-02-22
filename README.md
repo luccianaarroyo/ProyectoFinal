@@ -28,3 +28,6 @@ http://127.0.0.1:8000/register
 
 Para acceder a las web se debera ingresar por el link:  http://127.0.0.1:8000/inicio ,despues de iniciar sesion, se debe ingresar manualmente desde el mismo link. (Ya que sale el error 404 a pesar de haber cargado LOGIN_URL = 'login' en el archivo settings.py)
 
+Video de muestra:
+https://drive.google.com/file/d/1jsUnhxyEz3_f7cgu_yjB4MP40Ade9ckH/view?usp=sharing
+
