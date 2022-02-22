@@ -6,17 +6,17 @@ from AppCoder.models import Servicios, Profesionales, Consulta
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-#from django.urls import reverse_lazy1   #no lo importa
+from django.urls import reverse_lazy   #no lo importa
 
-from AppCoder.models import Servicios, Profesionales, Consulta
+from AppCoder.models import Servicios, Profesionales, Consulta #Avatar
 from django.contrib.auth.decorators import login_required
 
 
 def inicio(request):
     #---- AVATAR ROMPE NO RECONOSE OBJETS ---- 
     # avatar_url = Avatar.objects.filter(user= request.user)
-    # if avatares:
-    #     avatar_url = avatares.last().imagen.url
+    # if Avatar:
+    #     avatar_url = Avatar.last().imagen.url
     # else:
     #     avatar_url = ''
     return render(request, "AppCoder/inicio.html") #, {'avatar_url' : avatar_url}
@@ -103,7 +103,7 @@ def consulta_formulario (request): #se usan las mismas variables que en el forms
         
         if formulario.is_valid():
             data = formulario.cleaned_data
-        Consulta.objects.create(nombre =data['nombre'], servicio=data['servicio'], mail=data['mail']) # a los 39.17 de la clase 21 cambia (nombre=nombre, servicio=servicio, mail=mail) 
+            Consulta.objects.create(nombre =data['nombre'], servicio=data['servicio'], mail=data['mail']) # a los 39.17 de la clase 21 cambia (nombre=nombre, servicio=servicio, mail=mail) 
         return redirect('Consultas')    
     else:
         formulario = ConsultaForm()
