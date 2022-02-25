@@ -1,12 +1,14 @@
+from audioop import reverse
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from TrabajoFinal.forms import UserRegisterForm #UserEditForm
+from TrabajoFinal.forms import UserRegisterForm, UserEditForm
 from django.views.generic import CreateView
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
 
 
 
@@ -30,8 +32,7 @@ def login_request(request):
             return redirect('inicio/')
     else:
         form = AuthenticationForm()
-        return render(request, 'login.html', {'form': form})
-
+        return render(request, 'login.html', {'form': form})#APPCODER/LOGIN
 
 def register(request):
     if request.method == 'POST':
@@ -53,22 +54,23 @@ class UserCreateView(CreateView):
     template_name = 'registro.html'
     form_class = UserRegisterForm
  #------------ 1 SI HABILITO ESTO ROMPE TODOO!!!! -------------
-# @login_required  
-# def editar_perfil(request):
-#     usuario = request.user
+#@login_required  
+def editar_perfil(request):
+    usuario = request.user
     
-#     if request.method == 'POST':
-#       formulario = UserEditForm(request.POST)
-#       if formulario.is_valid():
-#          data = formulario.cleaned_data
-#          usuario.email = data['email']
-#          usuario.set_password = (data['password1'])
-#          usuario.fist_name = data ['first_name']
-#          usuario.last_name = data ['last_name']
-#          usuario.save()
-#          return redirect('inicio/')
+    if request.method == 'POST':
+      formulario = UserEditForm(request.POST)
+      if formulario.is_valid():
+         data = formulario.cleaned_data
+         usuario.email = data['email']
+         usuario.set_password(data['password1'])
+         usuario.first_name = data['first_name']
+         usuario.last_name = data ['last_name']
+         usuario.save()
+         return redirect('inicio/')
     
-#     else:
-#         formulario = UserEditForm({'email' : usuario.email})
+    else:
+        formulario = UserEditForm({'email' : usuario.email})
         
-#     return render(request, 'registro.html', {'form' : formulario})
+    return render(request, 'registro.html', {'form' : formulario})
+

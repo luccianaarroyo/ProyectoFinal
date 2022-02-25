@@ -2,6 +2,7 @@
 from AppCoder.views import inicio, servicios, servicios_formulario, profesionales, profesionales_formulario,  consulta,consulta_formulario, nosotros, busqueda_consulta,buscar
 from django.urls import path
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LogoutView
 #servicios_delete,
 #profesionales_delete,
 #consulta_delete,
@@ -35,5 +36,10 @@ urlpatterns = [
     # path('profesionales/add', ProfesionalesCreateView.as_view(),name='profesionales_add'),
     # path('profesionales/update', ProfesionalesUpdateView.as_view(),name='profesionales_update'),
     # path('profesionales/delete', ProfesionalesDeleteView.as_view(),name='profesionales_delete'),
-
+    # path('login', views.login_request, name = 'Login'),
+    # path('register', views.register, name = 'Register'),
+    # path('logout', LogoutView.as_view(template_name='AppCoder/logout.html'), name = 'Logout'),
+    # path('editarPerfil', views.editarPerfil, name="EditarPerfil"),
+    
+    #path('agregarAvatar', views.agregarAvatar, name="AgregarAvatar"),
 ]

@@ -6,11 +6,18 @@ from AppCoder.models import Servicios, Profesionales, Consulta
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy   #no lo importa
+from django.urls import reverse_lazy   
 
 from AppCoder.models import Servicios, Profesionales, Consulta #Avatar
 from django.contrib.auth.decorators import login_required
+#AGREGADO VIERNES 18.35
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
 
+#Decorador por defecto
+from django.contrib.auth.decorators import login_required
+
+from django.views.generic.base import TemplateView
 
 def inicio(request):
     #---- AVATAR ROMPE NO RECONOSE OBJETS ---- 
@@ -226,3 +233,4 @@ class ConsultaDeleteView(DeleteView):
 
 def nosotros (request):
     return render(request, "AppCoder/nosotros.html")
+
