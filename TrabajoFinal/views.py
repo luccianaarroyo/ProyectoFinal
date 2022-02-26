@@ -53,7 +53,7 @@ class UserCreateView(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registro.html'
     form_class = UserRegisterForm
- #------------ 1 SI HABILITO ESTO ROMPE TODOO!!!! -------------
+ #------------ 1 ROMPE LA MITAD!!!! -------------
 @login_required  
 def editar_perfil(request):
     usuario = request.user

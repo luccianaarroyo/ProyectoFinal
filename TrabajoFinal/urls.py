@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from TrabajoFinal.views import login_request, register, UserCreateView, editar_perfil #<------------ 1 SI HABILITO ESTO ROMPE TODOO!!!! -------------
+
+from TrabajoFinal.views import login_request, register, UserCreateView, editar_perfil 
 from django.contrib.auth.views import LogoutView, LoginView
+
 from django.contrib.auth.decorators import login_required
 #para las imagenes
 from django.conf import settings
@@ -30,7 +32,7 @@ urlpatterns = [
     path('login', LoginView.as_view(template_name='login.html'), name='login'),
     path('register', UserCreateView.as_view(), name='register'),
     path("logout", LogoutView.as_view(template_name='logout.html'), name='logout'),
-    path("user/edit", editar_perfil, name='user_editar'), #------------ 1 SI HABILITO ESTO ROMPE TODOO!!!! -------------
+    path("user/edit", editar_perfil, name='user_editar'),
     
 ]
 

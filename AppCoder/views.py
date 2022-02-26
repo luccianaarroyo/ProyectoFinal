@@ -1,15 +1,21 @@
+from pyexpat import model
 from django.forms import model_to_dict
 from django.shortcuts import render, redirect
+
 from django.http import HttpResponse
-from AppCoder.forms import ServiciosForm, ProfesionalesForm, ConsultaForm
+from django.urls import reverse_lazy  
+
+from AppCoder.forms import ServiciosForm, ProfesionalesForm, ConsultaForm #AvatarFormulario
+from AppCoder.models import Servicios, Profesionales, Consulta, Avatar
+
 from AppCoder.models import Servicios, Profesionales, Consulta
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy   
 
-from AppCoder.models import Servicios, Profesionales, Consulta #Avatar
+
 from django.contrib.auth.decorators import login_required
+
 #AGREGADO VIERNES 18.35
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
@@ -21,12 +27,15 @@ from django.views.generic.base import TemplateView
 
 def inicio(request):
     #---- AVATAR ROMPE NO RECONOSE OBJETS ---- 
-    # avatar_url = Avatar.objects.filter(user= request.user)
-    # if Avatar:
-    #     avatar_url = Avatar.last().imagen.url
-    # else:
-    #     avatar_url = ''
-    return render(request, "AppCoder/inicio.html") #, {'avatar_url' : avatar_url}
+    avatares = Avatar.objects.filter(user=request.user)
+
+    if avatares:
+        avatar_url = avatares.last().imagen.url
+    else:
+        avatar_url = ''
+
+    return render(request, 'AppCoder/inicio.html', {'avatar_url': avatar_url})
+   
 
 ############ SERVICIOS ###########
 
