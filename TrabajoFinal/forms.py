@@ -15,7 +15,7 @@ class UserRegisterForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2','first_name', 'last_name']
         help_texts = {k: '' for k in fields}
 
-#------------ 1 SI HABILITO ESTO ROMPE TODOO!!!! -------------        
+#------------ 1 ROMPE LA MITAD!!!! -------------        
 class UserEditForm(UserCreationForm):
     email = EmailField(label='modificar email')
     password1 = CharField(label='Contraseña', widget=PasswordInput)

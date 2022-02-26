@@ -54,7 +54,7 @@ class UserCreateView(CreateView):
     template_name = 'registro.html'
     form_class = UserRegisterForm
  #------------ 1 SI HABILITO ESTO ROMPE TODOO!!!! -------------
-#@login_required  
+@login_required  
 def editar_perfil(request):
     usuario = request.user
     
