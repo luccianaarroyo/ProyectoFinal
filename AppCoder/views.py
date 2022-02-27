@@ -5,15 +5,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse_lazy  
 
-from AppCoder.forms import ServiciosForm, ProfesionalesForm, ConsultaForm #AvatarFormulario
+from AppCoder.forms import ServiciosForm, ProfesionalesForm, ConsultaForm, AvatarForm
 from AppCoder.models import Servicios, Profesionales, Consulta, Avatar
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from AppCoder.models import Servicios, Profesionales, Consulta
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
 #AGREGADO VIERNES 18.35
@@ -27,10 +23,10 @@ from django.views.generic.base import TemplateView
 
 def inicio(request):
     #---- AVATAR ROMPE NO RECONOSE OBJETS ---- 
-    avatares = Avatar.objects.filter(user=request.user)
+    avatar = Avatar.objects.filter(user=request.user)
 
-    if avatares:
-        avatar_url = avatares.last().imagen.url
+    if avatar:
+        avatar_url = avatar.last().imagen.url
     else:
         avatar_url = ''
 
@@ -54,11 +50,31 @@ def servicios_formulario (request): #se usan las mismas variables que en el form
         formulario = ServiciosForm()
     return render(request,"AppCoder/consultaFormulario.html", {'formulario': formulario}) 
 
-# def servicios_delete (request, id_servicio):
-#     servicios = Servicios.objects.get(id=id_servicio)
-#     servicios.delete()
+def servicios_delete (request, id_servi):
+    servicios = Servicios.objects.get(id=id_servi)
+    servicios.delete()
     
-#     return redirect('Servicios')
+    return redirect('Servicios')
+
+def servicios_update(request, id_servi):
+    servicios = Servicios.objects.get(id=id_servi)
+    
+    if request.method == 'POST':
+         formulario = ServiciosForm(request.POST)
+
+         if formulario.is_valid():
+             data = formulario.cleaned_data
+             servicios.nombre = data ['nombre']
+             servicios.servicio = data ['servicio']
+             servicios.detalleDeServicio = data ['detalleDeServicio']
+            
+             servicios.save()
+            
+             return redirect ('Servicios')
+    else:
+        formulario = ServiciosForm(model_to_dict(servicios))
+    return render(request, 'AppCoder/consultaFormulario.html', {'formulario': formulario})
+
 
 ############ PROFESIONALES ############
 
@@ -77,30 +93,30 @@ def profesionales_formulario (request): #se usan las mismas variables que en el 
         formulario = ProfesionalesForm()
     return render(request, "AppCoder/consultaFormulario.html", {'formulario': formulario}) 
 
-#def profesionales_delete (request, id_profesional):
-#     profesionales = Profesionales.objects.get(id=id_profesional)
-#     profesionales.delete()
+def profesionales_delete (request, id_prof):
+     profesionales = Profesionales.objects.get(id=id_prof)
+     profesionales.delete()
     
-#     return redirect('Profesionales')
+     return redirect('Profesionales')
 
-#def profesionales_update(request, id_profesional):
-    # profesionales = Profesionales.objects.get(id=id_profesional)
+def profesionales_update(request, id_profesional):
+    profesionales = Profesionales.objects.get(id=id_profesional)
     
-    # if request.method == 'POST':
-    #     data = ProfesionalesForm(request.POST)
+    if request.method == 'POST':
+         formulario = ProfesionalesForm(request.POST)
 
-    #     if formulario.is_valid():
-    #         data = formulario.cleaned_data
-    #         profesionales.nombre = data ['nombre']
-    #         profesionales.nombreDeProfesional = data ['nombreDeProfesional']
-    #         profesionales.turno = data ['turno']
+         if formulario.is_valid():
+             data = formulario.cleaned_data
+             profesionales.nombre = data ['nombre']
+             profesionales.nombreDeProfesional = data ['nombreDeProfesional']
+             profesionales.turno = data ['turno']
             
-    #         profesionales.save()
+             profesionales.save()
             
-    #         return redirect ('Profesionales')
-    # else:
-    #     formulario = ProfesionalesForm(model_to_dict(profesionales))
-    # return render (request,  )
+             return redirect ('Profesionales')
+    else:
+         formulario = ProfesionalesForm(model_to_dict(profesionales))
+    return render (request, 'AppCoder/consultaFormulario.html', {'formulario': formulario})
         
 ##### CONSULTA ########
 
@@ -126,11 +142,32 @@ def consulta_formulario (request): #se usan las mismas variables que en el forms
     return render(request, "AppCoder/consultaFormulario.html", {'formulario': formulario}) #agrega {formulario} a los 41.20 clase21
 
 
-# def consulta_delete (request, id_consulta):
-#     consulta = Consulta.objects.get(id=id_consulta)
-#     consulta.delete()
+def consulta_delete (request, id_consul):
+    consulta = Consulta.objects.get(id=id_consul)
+    consulta.delete()
     
-#     return redirect('Consultas')
+    return redirect('Consultas')
+
+def consulta_update(request, id_consul):
+    consulta = Consulta.objects.get(id=id_consul)
+    
+    if request.method == 'POST':
+         formulario = ConsultaForm(request.POST)
+
+         if formulario.is_valid():
+             data = formulario.cleaned_data
+             consulta.nombre = data ['nombre']
+             consulta.servicio = data ['servicio']
+             consulta.mail = data ['mail']
+            
+             consulta.save()
+            
+             return redirect ('Consulta')
+    else:
+        formulario = ConsultaForm(model_to_dict(servicios))
+    return render(request, 'AppCoder/consultaFormulario.html', {'formulario': formulario})
+
+
 
 
 
@@ -158,85 +195,99 @@ def buscar(request):
 
 ###################################################################################
 
-#estas tiene que ser la nuevas views#
-
-class ServiciosListView(ListView):
-    model = Servicios
-    template_name = "AppCoder/servicio.html"
+#estas tiene que ser la nuevas views, FALTA CREAR SUS HTML#
 
 
-class ServiciosDetailView(DetailView):
-    model= Servicios
-    template_name= "AppCoder/servicio_ver.html" #c
-    
-class ServiciosCreateView(CreateView):
-    model= Servicios
-    success_url= "AppCoder/servicio.html"
-    Fields =['nombre', 'servicio', 'detalleDeServicio' ]
-    
-class ServiciosUpdat1eView(UpdateView):
-    model= Servicios
-    success_url= "AppCoder/servicio.html"
-    Fields =['nombre', 'servicio', 'detalleDeServicio' ]
-    
-class ServiciosDeleteView(DeleteView):
-    model= Servicios
-    success_url= "AppCoder/servicio_delete.html"
+# class AvatarView:
+#     def get_context_data(self, **kwargs):
+#         contexto = super().get_context_data(**kwargs)
+#         if self.request.user.is_authenticated:
+#             contexto['avatar_url'] = Avatar.objects.filter(user=self.request.user).last().imagen.url
+#         return contexto
 
+# #SERVICIOS#
+# class ServiciosListView(LoginRequiredMixin, AvatarView, ListView):
+#     model =  Servicios
+#     template_name = "AppCoder/servicio.html"
+#     context_object_name = 'servicio'
 
+# class ServicioaDetailView(DetailView):
+#     model=  Servicios
+#     template_name= "AppCoder/servicios_ver.html"
+    
+# class  ServiciosCreateView(AvatarView, CreateView):
+#     model=  Servicios
+#     success_url= reverse_lazy('servicio')
+#     Fields =['nombre', 'servicio', 'detalleDeServicio' ]
+#     template_name = 'AppCoder/servicios_form.html'
+        
+# class  ServiciosUpdateView(UpdateView):
+#     model=  Servicios
+#     success_url= reverse_lazy('servicio')
+#     Fields =['nombre', 'servicio', 'detalleDeServicio' ]
+#     template_name = 'AppCoder/servicios_form.html'
+    
+# class ServiciosDeleteView(DeleteView):
+#     model=  Servicios
+#     success_url= reverse_lazy('servicio')
+#     # template_name toma por default 'AppCoder/profesor_confirm_delete.html'
+# #
+    
+    
+# #PROFESIONALES#
+# class ProfesionalesListView(LoginRequiredMixin, AvatarView, ListView):
+#     model =  Profesionales
+#     template_name = "AppCoder/profesional.html"
+#     context_object_name = 'profesionales'
 
-class ProfesionalessListView(ListView):
-    model = Profesionales
-    template_name = "AppCoder/profesional.html"
+# class ProfesionalesDetailView(DetailView):
+#     model=  Profesionales
+#     template_name= "AppCoder/profesionales_ver.html"
+    
+# class  ProfesionalesCreateView(AvatarView, CreateView):
+#     model=  Profesionales
+#     success_url= reverse_lazy('profesionales')
+#     Fields =['nombre', 'nombreDeProfesional', 'turno' ]
+#     template_name = 'AppCoder/profesional_form.html'
+        
+# class  ProfesionalesUpdateView(UpdateView):
+#     model=  Profesionales
+#     success_url= reverse_lazy('profesionales')
+#     Fields =['nombre', 'nombreDeProfesional', 'turno' ]
+#     template_name = 'AppCoder/profesional_form.html'
+    
+# class ProfesionalDeleteView(DeleteView):
+#     model=  Profesionales
+#     success_url= reverse_lazy('profesionales')
+#     # template_name toma por default 'AppCoder/profesor_confirm_delete.html'
+    
+    
+# #CONSULTAS#
+# class ConsultaListView(LoginRequiredMixin, AvatarView, ListView):
+#     model =  Consulta
+#     template_name = "AppCoder/consulta.html"
+#     context_object_name = 'consulta'
 
-
-class ProfesionaleDetailView(DetailView):
-    model= Profesionales
-    template_name= "AppCoder/profesional_ver.html" #c
+# class ConsultaDetailView(DetailView):
+#     model=  Consulta
+#     template_name= "AppCoder/consulta_ver.html"
     
-class ProfesionalesCreateView(CreateView):
-    model= Profesionales
-    #success_url=  reverse_lazy ('profesionales')   #por algun motivo reverse_lazy lo marca como error
-    Fields =['nombre', 'nombreDeProfesional', 'turno' ]
-    template_name = "AppCoder/profesional_form.html" 
+# class  ConsultaCreateView(AvatarView, CreateView):
+#     model=  Consulta
+#     success_url= reverse_lazy('Consulta')
+#     Fields =['nombre', 'servicio', 'email' ]
+#     template_name = 'AppCoder/consulta_form.html'
+        
+# class  ConsultaUpdateView(UpdateView):
+#     model=  Consulta
+#     success_url= reverse_lazy('Consulta')
+#     Fields =['nombre', 'servicio', 'email' ]
+#     template_name = 'AppCoder/consulta_form.html'
     
-class ProfesionalesUpdat1eView(UpdateView):
-    model= Profesionales
-    success_url= "AppCoder/profesional.html"
-    Fields =['nombre', 'nombreDeProfesional', 'turno' ]
-    
-class ProfesionaleDeleteView(DeleteView):
-    model= Profesionales
-    success_url= "AppCoder/profesional_delete.html"
-    
-    
-    
-    
-    
-    
-class ConsultaListView(ListView):
-    model =  Consulta
-    template_name = "AppCoder/consulta.html"
-    #context_object_name = 'servicios'
-
-class ConsultaDetailView(DetailView):
-    model=  Consulta
-    template_name= "AppCoder/consulta.html" #c
-    
-class  ConsultaCreateView(CreateView):
-    model=  Consulta
-    success_url= "AppCoder/consulta.html"
-    Fields =['nombre', 'servicio', 'email' ]
-    
-class  ConsultaUpdateView(UpdateView):
-    model=  Consulta
-    success_url= "AppCoder/consulta.html"
-    Fields =['nombre', 'servicio', 'email' ]
-    
-class ConsultaDeleteView(DeleteView):
-    model=  Consulta
-    success_url= "AppCoder/consulta.html"
-    
+# class ConsultaDeleteView(DeleteView):
+#     model=  Consulta
+#     success_url= reverse_lazy('consulta')
+#     # template_name toma por default 'AppCoder/profesor_confirm_delete.html'
     
     
 
