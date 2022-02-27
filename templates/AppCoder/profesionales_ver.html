@@ -1,27 +1,21 @@
-<!DOCTYPE html>
+{% extends 'AppCoder/padre.html' %}
+
+{% block contenidoQueCambia %}
+
+    <ul>
+        <li>Nombre: {{profesioanles.nombre}}</li>
+        <li>Nombre de profesional: {{profesionales.nombreDeProfesional}}</li>
+        <li>Turno: {{profesionales.turno}}</li>
+    </ul>
+{% endblock %}
+
+
+
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario prueba</title>
-</head>
-
-<body>
-    <!-- if formulario lo agrega a los 44.21 clase 21 -->
-{% block contenidoQueCambia %}
-   <ul
-      <li>Nombre: {{profesionales.nombre}}<li>
-      <li>Nombre de profesional: {{profesionales.nombreDeProfesional}}<li>
-      <li>Turno: {{profesionales.turno}}<li>
-   
-   ><ul>   
-
-    <form action = "" method="POST">
-    {% csrf_token %} 
- 
-    <input type = "submit" value = "Enviar">
-    </form>
-{% endblock %}
-</body>
-</html>
+</head> {% endcomment %}

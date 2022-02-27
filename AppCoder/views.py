@@ -198,96 +198,101 @@ def buscar(request):
 #estas tiene que ser la nuevas views, FALTA CREAR SUS HTML#
 
 
-# class AvatarView:
-#     def get_context_data(self, **kwargs):
-#         contexto = super().get_context_data(**kwargs)
-#         if self.request.user.is_authenticated:
-#             contexto['avatar_url'] = Avatar.objects.filter(user=self.request.user).last().imagen.url
-#         return contexto
+class AvatarView:
+     def get_context_data(self, **kwargs):
+         contexto = super().get_context_data(**kwargs)
+         if self.request.user.is_authenticated:
+             contexto['avatar_url'] = Avatar.objects.filter(user=self.request.user).last().imagen.url
+         return contexto
 
 # #SERVICIOS#
-# class ServiciosListView(LoginRequiredMixin, AvatarView, ListView):
-#     model =  Servicios
-#     template_name = "AppCoder/servicio.html"
-#     context_object_name = 'servicio'
+class ServiciosListView(LoginRequiredMixin, AvatarView, ListView):
+     model =  Servicios
+     template_name = "AppCoder/servicio.html"
+     context_object_name = 'servicio'
 
-# class ServicioaDetailView(DetailView):
-#     model=  Servicios
-#     template_name= "AppCoder/servicios_ver.html"
+class ServiciosDetailView(DetailView):
+     model=  Servicios
+     template_name= "AppCoder/servicios_ver.html"
     
-# class  ServiciosCreateView(AvatarView, CreateView):
-#     model=  Servicios
-#     success_url= reverse_lazy('servicio')
-#     Fields =['nombre', 'servicio', 'detalleDeServicio' ]
-#     template_name = 'AppCoder/servicios_form.html'
+class  ServiciosCreateView(AvatarView, CreateView):
+     model=  Servicios
+     success_url= reverse_lazy('servicio')
+     Fields =['nombre', 'servicio', 'detalleDeServicio' ]
+     template_name = 'AppCoder/servicios_form.html'
         
-# class  ServiciosUpdateView(UpdateView):
-#     model=  Servicios
-#     success_url= reverse_lazy('servicio')
-#     Fields =['nombre', 'servicio', 'detalleDeServicio' ]
-#     template_name = 'AppCoder/servicios_form.html'
+class  ServiciosUpdateView(UpdateView):
+     model=  Servicios
+     success_url= reverse_lazy('servicio')
+     Fields =['nombre', 'servicio', 'detalleDeServicio' ]
+     template_name = 'AppCoder/servicios_form.html'
     
-# class ServiciosDeleteView(DeleteView):
-#     model=  Servicios
-#     success_url= reverse_lazy('servicio')
-#     # template_name toma por default 'AppCoder/profesor_confirm_delete.html'
+class ServiciosDeleteView(DeleteView):
+     model=  Servicios
+     success_url= reverse_lazy('servicio')
+     # template_name toma por default 'AppCoder/profesor_confirm_delete.html'
 # #
     
     
 # #PROFESIONALES#
-# class ProfesionalesListView(LoginRequiredMixin, AvatarView, ListView):
-#     model =  Profesionales
-#     template_name = "AppCoder/profesional.html"
-#     context_object_name = 'profesionales'
+class ProfesionalesListView(LoginRequiredMixin, AvatarView, ListView):
+     model =  Profesionales
+     template_name = "AppCoder/profesional.html"
+     context_object_name = 'profesionales'
+     
 
-# class ProfesionalesDetailView(DetailView):
-#     model=  Profesionales
-#     template_name= "AppCoder/profesionales_ver.html"
+
+class ProfesionalesDetailView(DetailView):
+     model=  Profesionales
+     template_name= "AppCoder/profesionales_ver.html"
     
-# class  ProfesionalesCreateView(AvatarView, CreateView):
-#     model=  Profesionales
-#     success_url= reverse_lazy('profesionales')
-#     Fields =['nombre', 'nombreDeProfesional', 'turno' ]
-#     template_name = 'AppCoder/profesional_form.html'
+class  ProfesionalesCreateView(AvatarView, CreateView):
+     model=  Profesionales
+     success_url= reverse_lazy('profesionales')
+     Fields =['nombre', 'nombreDeProfesional', 'turno' ]
+     template_name = 'AppCoder/profesionales_form.html'
         
-# class  ProfesionalesUpdateView(UpdateView):
-#     model=  Profesionales
-#     success_url= reverse_lazy('profesionales')
-#     Fields =['nombre', 'nombreDeProfesional', 'turno' ]
-#     template_name = 'AppCoder/profesional_form.html'
+class  ProfesionalesUpdateView(UpdateView):
+     model=  Profesionales
+     success_url= reverse_lazy('profesionales')
+     Fields =['nombre', 'nombreDeProfesional', 'turno' ]
+     template_name = 'AppCoder/profesionales_form.html'
     
-# class ProfesionalDeleteView(DeleteView):
-#     model=  Profesionales
-#     success_url= reverse_lazy('profesionales')
-#     # template_name toma por default 'AppCoder/profesor_confirm_delete.html'
+class ProfesionalesDeleteView(DeleteView):
+     model=  Profesionales
+     success_url= reverse_lazy('profesionales')
+     # template_name toma por default 'AppCoder/profesor_confirm_delete.html'
     
     
 # #CONSULTAS#
-# class ConsultaListView(LoginRequiredMixin, AvatarView, ListView):
-#     model =  Consulta
-#     template_name = "AppCoder/consulta.html"
-#     context_object_name = 'consulta'
 
-# class ConsultaDetailView(DetailView):
-#     model=  Consulta
-#     template_name= "AppCoder/consulta_ver.html"
+class ConsultaListView(LoginRequiredMixin, AvatarView, ListView):
+     model =  Consulta
+     template_name = "AppCoder/consulta.html"
+     context_object_name = 'consulta'
+     
+
+
+class ConsultaDetailView(DetailView):
+     model=  Consulta
+     template_name= "AppCoder/consulta_ver.html"
     
-# class  ConsultaCreateView(AvatarView, CreateView):
-#     model=  Consulta
-#     success_url= reverse_lazy('Consulta')
-#     Fields =['nombre', 'servicio', 'email' ]
-#     template_name = 'AppCoder/consulta_form.html'
+class  ConsultaCreateView(AvatarView, CreateView):
+     model=  Consulta
+     success_url= reverse_lazy('Consulta')
+     Fields =['nombre', 'servicio', 'email' ]
+     template_name = 'AppCoder/consulta_form.html'
         
-# class  ConsultaUpdateView(UpdateView):
-#     model=  Consulta
-#     success_url= reverse_lazy('Consulta')
-#     Fields =['nombre', 'servicio', 'email' ]
-#     template_name = 'AppCoder/consulta_form.html'
+class  ConsultaUpdateView(UpdateView):
+     model=  Consulta
+     success_url= reverse_lazy('Consulta')
+     Fields =['nombre', 'servicio', 'email' ]
+     template_name = 'AppCoder/consulta_form.html'
     
-# class ConsultaDeleteView(DeleteView):
-#     model=  Consulta
-#     success_url= reverse_lazy('consulta')
-#     # template_name toma por default 'AppCoder/profesor_confirm_delete.html'
+class ConsultaDeleteView(DeleteView):
+     model=  Consulta
+     success_url= reverse_lazy('consulta')
+     # template_name toma por default 'AppCoder/profesor_confirm_delete.html'
     
     
 
