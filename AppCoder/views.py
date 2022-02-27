@@ -211,7 +211,7 @@ class  ServiciosUpdateView(UpdateView):
     
 class ServiciosDeleteView(DeleteView):
      model=  Servicios
-     success_url= reverse_lazy('servicio')
+     success_url= reverse_lazy('servicios')
      template_name= 'AppCoder/servicios_confirm_delete.html'
 
 class ServiciosDetailView(DetailView):
