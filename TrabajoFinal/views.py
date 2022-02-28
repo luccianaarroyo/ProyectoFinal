@@ -70,7 +70,11 @@ def editar_perfil(request):
          return redirect('inicio/')
     
     else:
-        formulario = UserEditForm({'email' : usuario.email})
+        formulario = UserEditForm({'email': usuario.email})
         
-    return render(request, 'registro.html', {'form' : formulario})
+    return render(request, 'registro.html', {'form': formulario})
 
+class CoderLoginView(LoginView):
+    template_name = 'login.html'
+    next_page = ('inicio/')
+    

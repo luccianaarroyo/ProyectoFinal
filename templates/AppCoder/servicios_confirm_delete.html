@@ -1,0 +1,15 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% block contenidoQueCambia %}
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <ul>
+            <li>Nombre: {{servicios.nombre}}</li>
+            <li>Servicio: {{servicios.servicio}}</li>
+            <li>Detalle de Servicio: {{servicios.detalleDeServicio}}</li>
+        </ul>
+
+        <input type="submit" value="Borrar">
+    </form>
+{% endblock %}

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from TrabajoFinal.views import login_request, register, UserCreateView, editar_perfil 
+from TrabajoFinal.views import login_request, register, UserCreateView, editar_perfil, CoderLoginView 
 from django.contrib.auth.views import LogoutView, LoginView
 
 from django.contrib.auth.decorators import login_required
@@ -29,7 +29,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('inicio/', include ("AppCoder.urls")),
-    path('login', LoginView.as_view(template_name='login.html'), name='login'),
+    # path('login', LoginView.as_view(template_name='login.html'), name='login'),
+    path('login', CoderLoginView.as_view(), name='login'),
     path('register', UserCreateView.as_view(), name='register'),
     path("logout", LogoutView.as_view(template_name='logout.html'), name='logout'),
     path("user/edit", editar_perfil, name='user_editar'),

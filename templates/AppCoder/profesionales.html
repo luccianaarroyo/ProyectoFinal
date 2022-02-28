@@ -1,15 +1,14 @@
 {% extends 'AppCoder/padre.html' %}
-
 {% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>servicio</title>
+    <title>profesional</title>
 </head>
 <body style="background-color: plum;">
-    servicios
+  profesionales  
 </body>
 </html> {% endcomment %}
 
@@ -19,23 +18,23 @@
 
 
 {% block contenidoQueCambia %}
-    <h3> ¡Gracias por enviar tu consulta sobre nuestros servicios!
+    <h3> ¡Gracias por enviar tu consulta sobre nuestro staff!
         <br>
         Otras consultas realizadas: 
         <br>
     </h3>
 
-    {% for servicio in servicio %} 
-        {{servicio}}
-        
+    {% for profesional in profesionales %} 
+    <a href="{% url 'profesionales_ver' profesor.id %}">{{ profesionales }}</a>
+        <a href="{% url 'profesionales_delete' pro.id %}">Borrar</a>
+        <a href="{% url 'profesionales_update' pro.id %}">Editar</a>
         <br>
     {% endfor %} 
 
-
-        <a class="btn -primary" href="{% url 'servicios_formulario'%}">Agregar<a/>
+        <a class="btn -primary" href="{% url 'profesionales_formulario'%}">Agregar<a/>
 {% endblock %}
 
 
 {% block titulo %}
-    Servicios
+    Profesionales
 {% endblock %}
