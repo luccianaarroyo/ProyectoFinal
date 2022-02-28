@@ -142,51 +142,51 @@ def buscar(request):
 
 ############ SERVICIOS #########################################################################################
 # REEMPLAZADO POR ServiciosListView###########################################
-# def servicios(request):
-#     return render(request, "AppCoder/servicio.html", {'profesionales': Servicios.objects.all()})
+def servicios(request):
+    return render(request, "AppCoder/servicios.html", {'Servicios': Servicios.objects.all()})
 
 
 # REEMPLAZADO POR ServiciosCreateView###########################################
-# def servicios_formulario (request): #se usan las mismas variables que en el forms 
-#     if request.method == 'POST':
-#         formulario = ServiciosForm(request.POST)
+def servicios_formulario (request): #se usan las mismas variables que en el forms 
+    if request.method == 'POST':
+        formulario = ServiciosForm(request.POST)
         
-#         if formulario.is_valid():
-#             data = formulario.cleaned_data
-#         Servicios.objects.create(nombre =data['nombre'], servicio=data['servicio'], detalleDeServicio=data['detalleDeServicio']) 
-#         return redirect('Servicios')    
-#     else:
-#         formulario = ServiciosForm()
-#     return render(request,"AppCoder/consultaFormulario.html", {'formulario': formulario}) 
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+        Servicios.objects.create(nombre =data['nombre'], servicio=data['servicio'], detalleDeServicio=data['detalleDeServicio']) 
+        return redirect('Servicios')    
+    else:
+        formulario = ServiciosForm()
+    return render(request,"AppCoder/consultaFormulario.html", {'formulario': formulario}) 
 
 
 # REEMPLAZADO POR ServiciosDeleteView###########################################
-# def servicios_delete (request, id_servi):
-#     servicios = Servicios.objects.get(id=id_servi)
-#     servicios.delete()
+def servicios_delete (request, id_servi):
+    servicios = Servicios.objects.get(id=id_servi)
+    servicios.delete()
     
-#     return redirect('Servicios')
+    return redirect('Servicios')
 
 
 # REEMPLAZADO POR serviciosUpdateView###########################################
-# def servicios_update(request, id_servi):
-#     servicios = Servicios.objects.get(id=id_servi)
+def servicios_update(request, id_servi):
+    servicios = Servicios.objects.get(id=id_servi)
     
-#     if request.method == 'POST':
-#          formulario = ServiciosForm(request.POST)
+    if request.method == 'POST':
+         formulario = ServiciosForm(request.POST)
 
-#          if formulario.is_valid():
-#              data = formulario.cleaned_data
-#              servicios.nombre = data ['nombre']
-#              servicios.servicio = data ['servicio']
-#              servicios.detalleDeServicio = data ['detalleDeServicio']
+         if formulario.is_valid():
+             data = formulario.cleaned_data
+             servicios.nombre = data ['nombre']
+             servicios.servicio = data ['servicio']
+             servicios.detalleDeServicio = data ['detalleDeServicio']
             
-#              servicios.save()
+             servicios.save()
             
-#              return redirect ('Servicios')
-#     else:
-#         formulario = ServiciosForm(model_to_dict(servicios))
-#     return render(request, 'AppCoder/consultaFormulario.html', {'formulario': formulario})
+             return redirect ('Servicios')
+    else:
+        formulario = ServiciosForm(model_to_dict(servicios))
+    return render(request, 'AppCoder/consultaFormulario.html', {'formulario': formulario})
 
 # NUEVAS VIEWS DE SERVICIOS####################################################################################
 class ServiciosListView(AvatarView, ListView):
@@ -218,53 +218,53 @@ class ServiciosDetailView(DetailView):
 
 ############ PROFESIONALES reemplazado por nuevas views#####################################################################################
 #REEMPLAZADO POR  ListView#
-# def profesionales(request):
+def profesionales(request):
 
-#     return render(request, "AppCoder/profesional.html", {'profesionales': Profesionales.objects.all()})
+    return render(request, "AppCoder/profesional.html", {'profesionales': Profesionales.objects.all()})
 
 
-#REEMPLAZADO POR  ProfesionalesCreateView####################################
-# def profesionales_formulario (request): #se usan las mismas variables que en el forms 
+##REEMPLAZADO POR  ProfesionalesCreateView####################################
+def profesionales_formulario (request): #se usan las mismas variables que en el forms 
 
-#     if request.method == 'POST':
-#         formulario = ProfesionalesForm(request.POST)
+    if request.method == 'POST':
+        formulario = ProfesionalesForm(request.POST)
         
-#         if formulario.is_valid():
-#             data = formulario.cleaned_data
-#         Profesionales.objects.create(nombre =data['nombre'], nombreDeProfesional=data['nombreDeProfesional'], turno=data['turno']) 
-#         return redirect('Profesionales')    
-#     else:
-#         formulario = ProfesionalesForm()
-#     return render(request, "AppCoder/consultaFormulario.html", {'formulario': formulario}) 
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+        Profesionales.objects.create(nombre =data['nombre'], nombreDeProfesional=data['nombreDeProfesional'], turno=data['turno']) 
+        return redirect('Profesionales')    
+    else:
+        formulario = ProfesionalesForm()
+    return render(request, "AppCoder/consultaFormulario.html", {'formulario': formulario}) 
 
 
 # REEMPLAZADO POR ProfesionalesDeleteView###########################################
-# def profesionales_delete (request, id_prof):
-#      profesionales = Profesionales.objects.get(id=id_prof)
-#      profesionales.delete()
+def profesionales_delete (request, id_prof):
+     profesionales = Profesionales.objects.get(id=id_prof)
+     profesionales.delete()
     
-#      return redirect('Profesionales')
+     return redirect('Profesionales')
 
 
 # REEMPLAZADO POR ProfesionalesUpDteView###########################################
-# def profesionales_update(request, id_profesional): 
-#     profesionales = Profesionales.objects.get(id=id_profesional)
+def profesionales_update(request, id_profesional): 
+    profesionales = Profesionales.objects.get(id=id_profesional)
     
-#     if request.method == 'POST':
-#          formulario = ProfesionalesForm(request.POST)
+    if request.method == 'POST':
+         formulario = ProfesionalesForm(request.POST)
 
-#          if formulario.is_valid():
-#              data = formulario.cleaned_data
-#              profesionales.nombre = data ['nombre']
-#              profesionales.nombreDeProfesional = data ['nombreDeProfesional']
-#              profesionales.turno = data ['turno']
+         if formulario.is_valid():
+             data = formulario.cleaned_data
+             profesionales.nombre = data ['nombre']
+             profesionales.nombreDeProfesional = data ['nombreDeProfesional']
+             profesionales.turno = data ['turno']
             
-#              profesionales.save()
+             profesionales.save()
             
-#              return redirect ('Profesionales')
-#     else:
-#          formulario = ProfesionalesForm(model_to_dict(profesionales))
-#     return render (request, 'AppCoder/consultaFormulario.html', {'formulario': formulario})
+             return redirect ('Profesionales')
+    else:
+         formulario = ProfesionalesForm(model_to_dict(profesionales))
+    return render (request, 'AppCoder/consultaFormulario.html', {'formulario': formulario})
 
 
 # NUEVAS VIEWS DE PROFESIONALES#######################################################################

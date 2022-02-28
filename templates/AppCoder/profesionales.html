@@ -25,9 +25,9 @@
     </h3>
 
     {% for profesional in profesionales %} 
-    <a href="{% url 'profesionales_ver' profesor.id %}">{{ profesionales }}</a>
-        <a href="{% url 'profesionales_delete' pro.id %}">Borrar</a>
-        <a href="{% url 'profesionales_update' pro.id %}">Editar</a>
+        <a href="{% url 'profesionales' prof.id %}">{{ profesionales }}</a>
+        <a href="{% url 'profesionales_delete' prof.id %}">Borrar</a>
+        <a href="{% url 'profesionales_update' prof.id %}">Editar</a>
         <br>
     {% endfor %} 
 
