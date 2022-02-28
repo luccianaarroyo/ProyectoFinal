@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import Form, CharField, IntegerField, ImageField 
+from django.forms import Form, CharField, IntegerField, ImageField, EmailField, Textarea #agregado clase 21 34:48
 
 class ServiciosForm(forms.Form):
     nombre = forms.CharField()
@@ -16,5 +16,9 @@ class ConsultaForm(forms.Form):
     servicio = forms.CharField()
     mail = forms.EmailField() 
 
+
 class AvatarFormulario(Form):
     imagen = ImageField(required=True)
+
+    
+

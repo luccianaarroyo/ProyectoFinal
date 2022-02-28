@@ -1,7 +1,6 @@
 
 from django.urls import path
 from AppCoder.views import inicio, AvatarView, consulta, consulta_formulario, busqueda_consulta, buscar, nosotros, agregar_avatar
-# from AppCoder.views import inicio, servicios, servicios_formulario, profesionales, profesionales_formulario,  consulta,consulta_formulario, nosotros, busqueda_consulta,buscar
 from AppCoder.views import ServiciosListView, ServiciosCreateView, ServiciosUpdateView, ServiciosDeleteView, ServiciosDetailView, ProfesionalesListView, ProfesionalesCreateView, ProfesionalesUpdateView, ProfesionalesDeleteView, ProfesionalesDetailView #ConsultaListView, ConsultaCreateView, ConsultaUpdateView, ConsultaDeleteView, ConsultaDetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LogoutView
