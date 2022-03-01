@@ -40,23 +40,23 @@ class AvatarView:
           return contexto
 
 ##### CONSULTA ######################################################################################################################
-@login_required
-def consulta(request):
- return render(request, "AppCoder/consulta.html", {'consulta': Consulta.objects.all()})
+# @login_required
+# def consulta(request):
+#  return render(request, "AppCoder/consulta.html", {'consulta': Consulta.objects.all()})
     
        
-def consulta_formulario (request): #se usan las mismas variables que en el forms 
-    if request.method == 'POST':
-        formulario = ConsultaForm(request.POST) # agrega esto y saca nombre post etc a los 37.15 de la clase 21
+# def consulta_formulario (request): #se usan las mismas variables que en el forms 
+#     if request.method == 'POST':
+#         formulario = ConsultaForm(request.POST) # agrega esto y saca nombre post etc a los 37.15 de la clase 21
     
         
-        if formulario.is_valid():
-            data = formulario.cleaned_data
-            Consulta.objects.create(nombre =data['nombre'], servicio=data['servicio'], mail=data['mail']) # a los 39.17 de la clase 21 cambia (nombre=nombre, servicio=servicio, mail=mail) 
-        return redirect('consultas')    
-    else:
-        formulario = ConsultaForm()
-    return render(request, "AppCoder/consultaFormulario.html", {'formulario': formulario}) #agrega {formulario} a los 41.20 clase21
+#         if formulario.is_valid():
+#             data = formulario.cleaned_data
+#             Consulta.objects.create(nombre =data['nombre'], servicio=data['servicio'], mail=data['mail']) # a los 39.17 de la clase 21 cambia (nombre=nombre, servicio=servicio, mail=mail) 
+#         return redirect('consultas')    
+#     else:
+#         formulario = ConsultaForm()
+#     return render(request, "AppCoder/consultaFormulario.html", {'formulario': formulario}) #agrega {formulario} a los 41.20 clase21
 
 #EN CONSULTA NO HACE FLTA EL UPDATE Y DELETE#
 # def consulta_delete (request, id_consul):
@@ -87,31 +87,31 @@ def consulta_formulario (request): #se usan las mismas variables que en el forms
 
 # NUEVAS VIEWS DE CONSULTAS  NO HACE FALTA #################################################
 
-# class ConsultaListView(LoginRequiredMixin, AvatarView, ListView):
-#      model =  Consulta
-#      template_name = "AppCoder/consulta.html"
-#      context_object_name = 'consulta'
+class ConsultaListView(LoginRequiredMixin, AvatarView, ListView):
+     model =  Consulta
+     template_name = "AppCoder/consulta.html"
+     context_object_name = 'consultas'
      
-# class ConsultaDetailView(DetailView):
-#      model=  Consulta
-#      template_name= "AppCoder/consulta_ver.html"
+class ConsultaDetailView(DetailView):
+     model=  Consulta
+     template_name= "AppCoder/consulta_ver.html"
     
-# class  ConsultaCreateView(AvatarView, CreateView):
-#      model=  Consulta
-#      success_url= reverse_lazy('Consulta')
-#      Fields =['nombre', 'servicio', 'email' ]
-#      template_name = 'AppCoder/consulta_form.html'
+class  ConsultaCreateView(AvatarView, CreateView):
+     model=  Consulta
+     success_url= reverse_lazy('consultas')
+     fields = '__all__'
+     template_name = 'AppCoder/consulta_form.html'
         
-# class  ConsultaUpdateView(UpdateView):
-#      model=  Consulta
-#      success_url= reverse_lazy('Consulta')
-#      Fields =['nombre', 'servicio', 'email' ]
-#      template_name = 'AppCoder/consulta_form.html'
+class  ConsultaUpdateView(UpdateView):
+     model=  Consulta
+     success_url= reverse_lazy('consultas')
+     fields =['nombre', 'servicio', 'email' ]
+     template_name = 'AppCoder/consulta_form.html'
     
-# class ConsultaDeleteView(DeleteView):
-#      model=  Consulta
-#      success_url= reverse_lazy('consulta')
-#      template_name='AppCoder/profesor_confirm_delete.html'
+class ConsultaDeleteView(DeleteView):
+     model=  Consulta
+     success_url= reverse_lazy('consultas')
+     template_name='AppCoder/profesor_confirm_delete.html'
 
 ################## BUSQUEDA ######################################################################################
 
@@ -277,7 +277,7 @@ class  ProfesionalesCreateView(CreateView):
 class  ProfesionalesUpdateView(UpdateView):
      model=  Profesionales
      success_url= reverse_lazy('profesionales')
-     Fields =['nombre', 'nombreDeProfesional', 'turno' ]
+     fields =['nombre', 'nombreDeProfesional', 'turno' ]
      template_name = 'AppCoder/profesionales_form.html'
     
 class ProfesionalesDeleteView(DeleteView):

@@ -1,7 +1,7 @@
 
 from django.urls import path
-from AppCoder.views import inicio, AvatarView, consulta, consulta_formulario, busqueda_consulta, buscar, nosotros, agregar_avatar, servicios, servicios_formulario, servicios_delete, servicios_update
-from AppCoder.views import ServiciosListView, ServiciosCreateView, ServiciosUpdateView, ServiciosDeleteView, ServiciosDetailView, ProfesionalesListView, ProfesionalesCreateView, ProfesionalesUpdateView, ProfesionalesDeleteView, ProfesionalesDetailView #ConsultaListView, ConsultaCreateView, ConsultaUpdateView, ConsultaDeleteView, ConsultaDetailView
+from AppCoder.views import inicio, AvatarView, busqueda_consulta, buscar, nosotros, agregar_avatar, servicios, servicios_formulario, servicios_delete, servicios_update
+from AppCoder.views import ServiciosListView, ServiciosCreateView, ServiciosUpdateView, ServiciosDeleteView, ServiciosDetailView, ProfesionalesListView, ProfesionalesCreateView, ProfesionalesUpdateView, ProfesionalesDeleteView, ProfesionalesDetailView,ConsultaListView, ConsultaCreateView, ConsultaUpdateView, ConsultaDeleteView, ConsultaDetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LogoutView
 
@@ -23,8 +23,8 @@ urlpatterns = [
     # path('nosotros', nosotros, name='nosotros'),
     
      ##MANERA VIEJA Y LARGA#
-    path('consulta', login_required(consulta), name='consultas'),
-    path('consultaFormulario', consulta_formulario, name='consulta_formulario'),
+    # path('consulta', login_required(consulta), name='consultas'),
+    # path('consultaFormulario', consulta_formulario, name='consulta_formulario'),
     path('busquedaConsulta', busqueda_consulta, name='busqueda_consulta'),
     path('buscar', buscar, name='buscar'),
     
@@ -34,11 +34,11 @@ urlpatterns = [
       
       
     ##CONSULTAS MANERA NUEVA Y RESUMIDA
-    # path('consulta', ProfesionalesListView.as_view(), name='Consultas'),
-    # path('consulta/add', ProfesionalesCreateView.as_view(), name='consulta_formulario'),
-    # path('consulta/update/<pk>', ProfesionalesUpdateView.as_view(), name='consulta_update'),
-    # path('consulta/delete/<pk>', ProfesionalesDeleteView.as_view(), name='consulta_delete'),
-    #path('consulta/view/<pk>', ProfesionalesDetailView.as_view(), name='consulta_ver'),
+    path('consulta', ConsultaListView.as_view(), name='consultas'),
+    path('consulta/add', ConsultaCreateView.as_view(), name='consulta_formulario'),
+    path('consulta/update/<pk>', ConsultaUpdateView.as_view(), name='consulta_update'),
+    path('consulta/delete/<pk>', ConsultaDeleteView.as_view(), name='consulta_delete'),
+    path('consulta/view/<pk>', ConsultaDetailView.as_view(), name='consulta_ver'),
     
     #MANERA NUEVA Y RESUMIDA#
     path('servicios', ServiciosListView.as_view(), name='servicios'),

@@ -15,7 +15,7 @@ class ProfesionalesForm(Form):
     nombreDeProfesional = forms.CharField(max_length=30)
     turno = forms.CharField(max_length=30) 
     
-class ConsultaForm(forms.Form):
+class ConsultaForm(Form):
     nombre = CharField()
     servicio = CharField()
     mail = EmailField() 
