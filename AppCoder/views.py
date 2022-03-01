@@ -9,7 +9,7 @@ from AppCoder.forms import ServiciosForm, ProfesionalesForm, ConsultaForm, Avata
 from AppCoder.models import Servicios, Profesionales, Consulta, Avatar
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-# from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 
 
@@ -53,7 +53,7 @@ def consulta_formulario (request): #se usan las mismas variables que en el forms
         if formulario.is_valid():
             data = formulario.cleaned_data
             Consulta.objects.create(nombre =data['nombre'], servicio=data['servicio'], mail=data['mail']) # a los 39.17 de la clase 21 cambia (nombre=nombre, servicio=servicio, mail=mail) 
-        return redirect('Consultas')    
+        return redirect('consultas')    
     else:
         formulario = ConsultaForm()
     return render(request, "AppCoder/consultaFormulario.html", {'formulario': formulario}) #agrega {formulario} a los 41.20 clase21
@@ -192,13 +192,13 @@ class ServiciosListView(AvatarView, ListView):
 class  ServiciosCreateView(CreateView):
      model=  Servicios
      success_url= reverse_lazy('servicios')
-     Fields =['nombre', 'servicio', 'detalleDeServicio' ]
+     fields =['nombre', 'servicio', 'detalleDeServicio' ]
      template_name = 'AppCoder/servicios_form.html'
         
 class  ServiciosUpdateView(UpdateView):
      model=  Servicios
      success_url= reverse_lazy('servicios')
-     Fields =['nombre', 'servicio', 'detalleDeServicio' ]
+     fields =['nombre', 'servicio', 'detalleDeServicio' ]
      template_name = 'AppCoder/servicios_form.html'
     
 class ServiciosDeleteView(DeleteView):

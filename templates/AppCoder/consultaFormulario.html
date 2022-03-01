@@ -1,7 +1,4 @@
 {% extends 'AppCoder/padre.html' %}
-
-
-
 {% block contenidoQueCambia %}
     Consulta por los turnos disponibles!
     <br>
@@ -10,26 +7,14 @@
     {% if formulario.errors %} 
         <p style=color:red;"> {{formulario.errors}}  </p>
         {% endif  %} 
-
-
         <form action = "" method="POST">
-        {% csrf_token %} 
-        
-        <tabla>
-
+        {% csrf_token %}   
+        <table>
             {{ formulario.as_table }}
-
-
-        </tabla>
-    
-        
-
+        </table>
         <input type = "submit" value = "Enviar">
         </form>
-    
-
     {% endblock %}
-
  {% block titulo %}
     Consultas
 {% endblock %}

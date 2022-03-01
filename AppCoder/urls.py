@@ -23,7 +23,7 @@ urlpatterns = [
     # path('nosotros', nosotros, name='nosotros'),
     
      ##MANERA VIEJA Y LARGA#
-    path('consulta', login_required(consulta), name='Consultas'),
+    path('consulta', login_required(consulta), name='consultas'),
     path('consultaFormulario', consulta_formulario, name='consulta_formulario'),
     path('busquedaConsulta', busqueda_consulta, name='busqueda_consulta'),
     path('buscar', buscar, name='buscar'),
@@ -41,17 +41,17 @@ urlpatterns = [
     #path('consulta/view/<pk>', ProfesionalesDetailView.as_view(), name='consulta_ver'),
     
     #MANERA NUEVA Y RESUMIDA#
-    path('servicios', ServiciosListView.as_view(), name='Servicios'),
+    path('servicios', ServiciosListView.as_view(), name='servicios'),
     path('servicios/add', ServiciosCreateView.as_view(), name='servicios_formulario'),
     path('servicios/update/<pk>', ServiciosUpdateView.as_view(), name='servicios_update'),
     path('servicios/delete/<pk>', ServiciosDeleteView.as_view(), name='servicios_delete'),
     path('servicios/view/<pk>', ServiciosDetailView.as_view(), name='servicios_ver'),
     
      ##MANERA VIEJA Y LARGA#
-    path('servicios', servicios, name='servicios'),
-    path('serviciosFormulario', servicios_formulario, name='servicios_formulario'),
-    path('servicios/update/<pk>', servicios_update, name='servicios_update'),
-    path('servicios/delete/<pk>', servicios_delete, name='servicios_delete'),
+    # path('servicios', servicios, name='servicios'),
+    # path('serviciosFormulario', servicios_formulario, name='servicios_formulario'),
+    # path('servicios/update/<pk>', servicios_update, name='servicios_update'),
+    # path('servicios/delete/<pk>', servicios_delete, name='servicios_delete'),
     
     #MANERA NUEVA Y RESUMIDA#
     path('profesionales', ProfesionalesListView.as_view(), name='profesionales'),

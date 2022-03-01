@@ -20,7 +20,6 @@ class ConsultaForm(forms.Form):
     servicio = CharField()
     mail = EmailField() 
 
-
 class AvatarFormulario(Form):
     imagen = ImageField(required=True)
 
