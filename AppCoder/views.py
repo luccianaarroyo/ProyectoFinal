@@ -9,12 +9,7 @@ from AppCoder.forms import ServiciosForm, ProfesionalesForm, ConsultaForm, Avata
 from AppCoder.models import Servicios, Profesionales, Consulta, Avatar
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from AppCoder.models import Servicios, Profesionales, Consulta
-
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
-from django.contrib.auth.mixins import LoginRequiredMixin
+# from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 
 
@@ -218,65 +213,65 @@ class ServiciosDetailView(DetailView):
 
 ############ PROFESIONALES reemplazado por nuevas views#####################################################################################
 #REEMPLAZADO POR  ListView#
-def profesionales(request):
+# def profesionales(request):
 
-    return render(request, "AppCoder/profesional.html", {'profesionales': Profesionales.objects.all()})
+#     return render(request, "AppCoder/profesional.html", {'profesionales': Profesionales.objects.all()})
 
 
-##REEMPLAZADO POR  ProfesionalesCreateView####################################
-def profesionales_formulario (request): #se usan las mismas variables que en el forms 
+# ##REEMPLAZADO POR  ProfesionalesCreateView####################################
+# def profesionales_formulario (request): #se usan las mismas variables que en el forms 
 
-    if request.method == 'POST':
-        formulario = ProfesionalesForm(request.POST)
+#     if request.method == 'POST':
+#         formulario = ProfesionalesForm(request.POST)
         
-        if formulario.is_valid():
-            data = formulario.cleaned_data
-        Profesionales.objects.create(nombre =data['nombre'], nombreDeProfesional=data['nombreDeProfesional'], turno=data['turno']) 
-        return redirect('Profesionales')    
-    else:
-        formulario = ProfesionalesForm()
-    return render(request, "AppCoder/consultaFormulario.html", {'formulario': formulario}) 
+#         if formulario.is_valid():
+#             data = formulario.cleaned_data
+#         Profesionales.objects.create(nombre =data['nombre'], nombreDeProfesional=data['nombreDeProfesional'], turno=data['turno']) 
+#         return redirect('Profesionales')    
+#     else:
+#         formulario = ProfesionalesForm()
+#     return render(request, "AppCoder/consultaFormulario.html", {'formulario': formulario}) 
 
 
-# REEMPLAZADO POR ProfesionalesDeleteView###########################################
-def profesionales_delete (request, id_prof):
-     profesionales = Profesionales.objects.get(id=id_prof)
-     profesionales.delete()
+# # REEMPLAZADO POR ProfesionalesDeleteView###########################################
+# def profesionales_delete (request, id_prof):
+#      profesionales = Profesionales.objects.get(id=id_prof)
+#      profesionales.delete()
     
-     return redirect('Profesionales')
+#      return redirect('Profesionales')
 
 
-# REEMPLAZADO POR ProfesionalesUpDteView###########################################
-def profesionales_update(request, id_profesional): 
-    profesionales = Profesionales.objects.get(id=id_profesional)
+# # REEMPLAZADO POR ProfesionalesUpDteView###########################################
+# def profesionales_update(request, id_profesional): 
+#     profesionales = Profesionales.objects.get(id=id_profesional)
     
-    if request.method == 'POST':
-         formulario = ProfesionalesForm(request.POST)
+#     if request.method == 'POST':
+#          formulario = ProfesionalesForm(request.POST)
 
-         if formulario.is_valid():
-             data = formulario.cleaned_data
-             profesionales.nombre = data ['nombre']
-             profesionales.nombreDeProfesional = data ['nombreDeProfesional']
-             profesionales.turno = data ['turno']
+#          if formulario.is_valid():
+#              data = formulario.cleaned_data
+#              profesionales.nombre = data ['nombre']
+#              profesionales.nombreDeProfesional = data ['nombreDeProfesional']
+#              profesionales.turno = data ['turno']
             
-             profesionales.save()
+#              profesionales.save()
             
-             return redirect ('Profesionales')
-    else:
-         formulario = ProfesionalesForm(model_to_dict(profesionales))
-    return render (request, 'AppCoder/consultaFormulario.html', {'formulario': formulario})
+#              return redirect ('Profesionales')
+#     else:
+#          formulario = ProfesionalesForm(model_to_dict(profesionales))
+#     return render (request, 'AppCoder/consultaFormulario.html', {'formulario': formulario})
 
 
 # NUEVAS VIEWS DE PROFESIONALES#######################################################################
 class ProfesionalesListView(AvatarView, ListView):
      model =  Profesionales
      template_name = "AppCoder/profesionales.html"
-     context_object_name = 'profesionales'
+     context_object_name = 'profesional'
      
 class  ProfesionalesCreateView(CreateView):
      model=  Profesionales
      success_url= reverse_lazy('profesionales')
-     Fields =['nombre', 'nombreDeProfesional', 'turno' ]
+     fields = ['nombre', 'nombreDeProfesional', 'turno' ]
      template_name = 'AppCoder/profesionales_form.html'
         
 class  ProfesionalesUpdateView(UpdateView):

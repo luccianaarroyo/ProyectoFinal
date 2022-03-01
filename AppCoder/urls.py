@@ -1,6 +1,6 @@
 
 from django.urls import path
-from AppCoder.views import inicio, AvatarView, consulta, consulta_formulario, busqueda_consulta, buscar, nosotros, agregar_avatar, servicios, servicios_formulario, servicios_delete, servicios_update, profesionales, profesionales_delete, profesionales_formulario, profesionales_update
+from AppCoder.views import inicio, AvatarView, consulta, consulta_formulario, busqueda_consulta, buscar, nosotros, agregar_avatar, servicios, servicios_formulario, servicios_delete, servicios_update
 from AppCoder.views import ServiciosListView, ServiciosCreateView, ServiciosUpdateView, ServiciosDeleteView, ServiciosDetailView, ProfesionalesListView, ProfesionalesCreateView, ProfesionalesUpdateView, ProfesionalesDeleteView, ProfesionalesDetailView #ConsultaListView, ConsultaCreateView, ConsultaUpdateView, ConsultaDeleteView, ConsultaDetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LogoutView
@@ -54,16 +54,16 @@ urlpatterns = [
     path('servicios/delete/<pk>', servicios_delete, name='servicios_delete'),
     
     #MANERA NUEVA Y RESUMIDA#
-    path('profesionales', ProfesionalesListView.as_view(), name='Profesionales'),
+    path('profesionales', ProfesionalesListView.as_view(), name='profesionales'),
     path('profesionales/add', ProfesionalesCreateView.as_view(), name='profesionales_formulario'),
     path('profesionales/update/<pk>', ProfesionalesUpdateView.as_view(), name='profesionaless_update'),
     path('profesionales/delete/<pk>', ProfesionalesDeleteView.as_view(), name='profesionales_delete'),
     path('profesionales/view/<pk>', ProfesionalesDetailView.as_view(), name='profesionales_ver'),
     
      ##MANERA VIEJA Y LARGA#
-    path('profesionales', profesionales, name='profesionales'),
-    path('profesionalesFormulario', profesionales_formulario, name='profesionales_formulario'),
-    path('profesionales/update/<pk>', profesionales_update, name='profesionales_update'),
-    path('profesionales/delete/<pk>', profesionales_delete, name='profesionales_delete')
+    #path('profesionales', profesionales, name='profesionales'),
+    # path('profesionalesFormulario', profesionales_formulario, name='profesionales_formulario'),
+    # path('profesionales/update/<pk>', profesionales_update, name='profesionales_update'),
+    # path('profesionales/delete/<pk>', profesionales_delete, name='profesionales_delete')
     
 ]

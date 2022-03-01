@@ -1,21 +1,4 @@
 {% extends 'AppCoder/padre.html' %}
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>profesional</title>
-</head>
-<body style="background-color: plum;">
-  profesionales  
-</body>
-</html> {% endcomment %}
-
-
-
-
-
 
 {% block contenidoQueCambia %}
     <h3> ¡Gracias por enviar tu consulta sobre nuestro staff!
@@ -24,14 +7,13 @@
         <br>
     </h3>
 
-    {% for profesional in profesionales %} 
-        <a href="{% url 'profesionales' prof.id %}">{{ profesionales }}</a>
-        <a href="{% url 'profesionales_delete' prof.id %}">Borrar</a>
-        <a href="{% url 'profesionales_update' prof.id %}">Editar</a>
+    {% for profesional in profesional %} 
+        {{ profesional }}
         <br>
+        
     {% endfor %} 
 
-        <a class="btn -primary" href="{% url 'profesionales_formulario'%}">Agregar<a/>
+        <a class="btn -primary" href="{% url 'profesionales_formulario' %}">Agregar<a/>
 {% endblock %}
 
 
