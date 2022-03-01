@@ -7,13 +7,16 @@
         <br>
     </h3>
 
-    {% for profesional in profesional %} 
-        {{ profesional }}
+    {% for profesionales in profesionales %} 
+        {{ profesionales }}
+        <a href="{% url 'profesionales_delete' profesionales.id %}">Borrar</a>
+        <a href="{% url 'profesionales_update' profesionales.id %}">Editar</a>
         <br>
         
     {% endfor %} 
 
-        <a class="btn -primary" href="{% url 'profesionales_formulario' %}">Agregar<a/>
+         <a class="btn -primary" href="{% url 'profesionales_formulario' %}">Agregar<a/>
+        
 {% endblock %}
 
 

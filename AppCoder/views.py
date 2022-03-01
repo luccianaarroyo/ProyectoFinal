@@ -111,7 +111,7 @@ class  ConsultaUpdateView(UpdateView):
 class ConsultaDeleteView(DeleteView):
      model=  Consulta
      success_url= reverse_lazy('consultas')
-     template_name='AppCoder/profesor_confirm_delete.html'
+     #template_name='AppCoder/profesor_confirm_delete.html'
 
 ################## BUSQUEDA ######################################################################################
 
@@ -204,7 +204,7 @@ class  ServiciosUpdateView(UpdateView):
 class ServiciosDeleteView(DeleteView):
      model=  Servicios
      success_url= reverse_lazy('servicios')
-     template_name= 'AppCoder/servicios_confirm_delete.html'
+     #template_name= 'AppCoder/servicios_confirm_delete.html'
 
 class ServiciosDetailView(DetailView):
      model=  Servicios
@@ -266,7 +266,7 @@ class ServiciosDetailView(DetailView):
 class ProfesionalesListView(AvatarView, ListView):
      model =  Profesionales
      template_name = "AppCoder/profesionales.html"
-     context_object_name = 'profesional'
+     context_object_name = 'profesionales'
      
 class  ProfesionalesCreateView(CreateView):
      model=  Profesionales
@@ -283,7 +283,7 @@ class  ProfesionalesUpdateView(UpdateView):
 class ProfesionalesDeleteView(DeleteView):
      model=  Profesionales
      success_url= reverse_lazy('profesionales')
-     template_name= 'AppCoder/profesionales_confirm_delete.html'
+     #template_name= 'AppCoder/profesionales_confirm_delete.html'
 
 class ProfesionalesDetailView(DetailView):
      model=  Profesionales
@@ -301,7 +301,7 @@ def agregar_avatar(request):
         if formulario.is_valid():
             avatar = Avatar(user=request.user, imagen=formulario.cleaned_data['imagen'])
             avatar.save()
-            return redirect('inicio/')
+            return redirect('Inicio')
     else:
         formulario = AvatarFormulario()
 

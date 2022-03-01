@@ -1,18 +1,23 @@
 {% extends 'AppCoder/padre.html' %}
 
 {% block contenidoQueCambia %}
-<h3> ¡Gracias por enviar tu consulta sobre nuestros servicios!
+    <h3> ¡Gracias por enviar tu consulta sobre nuestros servicios!
     <br>
     Otras consultas realizadas:
     <br>
-</h3>
+    </h3>
 
-{% for servicios in servicios %}
-    {{servicios}}
-    <br>
-{% endfor %}
+    {% for servicios in servicios %}
+         {{ servicios }}
+         <a class="btn btn-primary" href="{% url 'servicios_delete' servicios.id %}">Borrar</a>
+         <a class="btn btn-primary" href="{% url 'servicios_update' servicios.id %}">Editar</a>
+    
+          <br>
+    {% endfor %}
 
-<a class="btn btn-primary" href="{% url 'servicios_formulario' %}">Agregar</a>
+    <a class="btn btn-primary" href="{% url 'servicios_formulario' %}">Agregar</a>
+
+ 
 
 {% endblock %}
 

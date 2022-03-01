@@ -5,7 +5,8 @@ from django.db.models.fields import (
     BooleanField, CharField, DateField, EmailField, IntegerField,
     GenericIPAddressField, URLField, DecimalField, TimeField
 )
-class ServiciosForm(forms.Form):
+class ServiciosForm(Form):
+#class ServiciosForm(forms.Form):
     nombre = forms.CharField()
     servicio = forms.CharField()
     detalleDeServicio = forms.CharField() 

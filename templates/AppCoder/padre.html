@@ -39,12 +39,17 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'profesionales' %}">Profesionales</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'consultas' %}">Consulta</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'busqueda_consulta' %}">Buscar</a></li>
+                        
                         {% if not request.user.is_authenticated %}
                           <a class="btn btn-primary" href="{% url 'login'%}">Iniciar</a>
                         {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'avatar_add' %}">Editar perfil</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'user_editar' %}">Cambiar contraseña</a></li>
                             <p class="text-white small mb-4 mb-lg-0"> Hola {{user.username}}!</p>
                             <img src="{{avatar_url}}" height="40px"/>
                             <a class="btn btn-primary" href="{% url 'logout'%}">Logout</a>
+                            
+                        
                         {% endif %}
                     </ul>
                 </div>

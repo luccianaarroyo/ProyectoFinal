@@ -67,7 +67,7 @@ def editar_perfil(request):
          usuario.first_name = data['first_name']
          usuario.last_name = data ['last_name']
          usuario.save()
-         return redirect('inicio/')
+         return redirect('Inicio')
     
     else:
         formulario = UserEditForm({'email': usuario.email})

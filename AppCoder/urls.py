@@ -56,7 +56,7 @@ urlpatterns = [
     #MANERA NUEVA Y RESUMIDA#
     path('profesionales', ProfesionalesListView.as_view(), name='profesionales'),
     path('profesionales/add', ProfesionalesCreateView.as_view(), name='profesionales_formulario'),
-    path('profesionales/update/<pk>', ProfesionalesUpdateView.as_view(), name='profesionaless_update'),
+    path('profesionales/update/<pk>', ProfesionalesUpdateView.as_view(), name='profesionales_update'),
     path('profesionales/delete/<pk>', ProfesionalesDeleteView.as_view(), name='profesionales_delete'),
     path('profesionales/view/<pk>', ProfesionalesDetailView.as_view(), name='profesionales_ver'),
     
