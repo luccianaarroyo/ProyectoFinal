@@ -17,3 +17,5 @@ usuario: Luccianaarroyo
 constraseña: luci1234567
 
 Para acceder a las web se debera ingresar por el link:  http://127.0.0.1:8000/inicio
+
+Link de video de muestra: https://drive.google.com/drive/folders/1jsIMeDfYzDuQW4cVJqjo7oAAvn62hy21?usp=sharing
